@@ -1,0 +1,23 @@
+{
+  "name": "udemycypress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "open": "cypress open",
+    "test": "cypress run",
+    "spectest": "npm run test -- --spec",
+    "headed": "npm run test -- --headed",
+    "cloudRun": "npm run test -- --record --key ba057bbe-f4ca-49f1-815a-4604edabaf0a --reporter mochawesome",
+    "greenKart1": "npm run test -- --spec cypress/e2e/GreenKartTest1.cy.js --reporter mochawesome"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.6.3",
+    "cypress-iframe": "^1.0.1",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0"
+  }
+}

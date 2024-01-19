@@ -1,0 +1,81 @@
+{
+  "stats": {
+    "suites": 0,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-01-18T21:23:00.561Z",
+    "end": "2024-01-18T21:23:06.643Z",
+    "duration": 6082,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "7426f710-74b6-420d-b64e-269d89d38aee",
+      "title": "",
+      "fullFile": "cypress\\e2e\\WebTable.cy.js",
+      "file": "cypress\\e2e\\WebTable.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [
+        {
+          "title": "Webtables",
+          "fullTitle": "Webtables",
+          "timedOut": null,
+          "duration": 3931,
+          "state": "passed",
+          "speed": "fast",
+          "pass": true,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "cy.visit(Cypress.env('url') + \"/AutomationPractice/\");\ncy.get(\".table-display#product tr td:nth-child(2)\").each(($e1, index, $list) => {\n  if ($e1.text().includes(\"Python\")) {\n    cy.get(\".table-display#product tr td:nth-child(2)\").eq(index).next().then(function (price) {\n      const priceText = price.text();\n      expect(priceText).to.equal(\"25\");\n    });\n  }\n});",
+          "err": {},
+          "uuid": "50f3ea21-4e44-442f-8775-cd47196cc7e4",
+          "parentUUID": "7426f710-74b6-420d-b64e-269d89d38aee",
+          "isHook": false,
+          "skipped": false
+        }
+      ],
+      "suites": [],
+      "passes": [
+        "50f3ea21-4e44-442f-8775-cd47196cc7e4"
+      ],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 3931,
+      "root": true,
+      "rootEmpty": false,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}
