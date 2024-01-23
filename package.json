@@ -8,20 +8,36 @@
     "spectest": "npm run test -- --spec",
     "headed": "npm run test -- --headed",
     "cloudRun": "npm run test -- --record --key ba057bbe-f4ca-49f1-815a-4604edabaf0a --reporter mochawesome",
-    "greenKart1": "npm run test -- --spec cypress/e2e/GreenKartTest1.cy.js --reporter mochawesome"
+    "greenKart1": "npm run test -- --spec cypress/e2e/GreenKartTest1.cy.js --reporter mochawesome",
+    "generate-report": "multiple-cucumber-html-reporter -d cypress/reports/htmlReports"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "cypress": "^13.6.3",
     "cypress-iframe": "^1.0.1",
     "mochawesome": "^7.1.3",
     "mochawesome-merge": "^4.3.0",
-    "mochawesome-report-generator": "^6.2.0"
+    "mochawesome-report-generator": "^6.2.0",
+    "multiple-cucumber-html-reporter": "^3.6.1"
   },
   "dependencies": {
-    "@badeball/cypress-cucumber-preprocessor": "^20.0.1",
-    "@cypress/browserify-preprocessor": "latest"
+    "@badeball/cypress-cucumber-preprocessor": "latest",
+    "@cypress/browserify-preprocessor": "latest",
+    "convert-excel-to-json": "^1.7.0",
+    "neat-csv": "^5.1.0",
+    "stream": "^0.0.2"
   },
-  "keywords": [],
-  "description": ""
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true,
+    "stepDefinitions": [
+      "cypress/integration/e2e/BDD/**/*.js",
+      "cypress/integration/PageObjects/**/*.js",
+      "cypress/support/commands.js"
+    ],
+    "json": {
+      "enabled": true,
+      "output": "cypress/reports/jsonReports/cucumber-report.json"
+    }
+  }
 }

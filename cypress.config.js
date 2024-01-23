@@ -1,19 +1,29 @@
+// import excelToJson from "convert-excel-to-json";
 const { defineConfig } = require("cypress");
-const {
-  addCucumberPreprocessorPlugin,
-} = require("@badeball/cypress-cucumber-preprocessor");
-const {
-  preprocessor,
-} = require("@badeball/cypress-cucumber-preprocessor/browserify");
+const { addCucumberPreprocessorPlugin, } = require("@badeball/cypress-cucumber-preprocessor");
+const { preprocessor, } = require("@badeball/cypress-cucumber-preprocessor/browserify");
+const fs = require('fs');
+const excelToJson = require('convert-excel-to-json');
+
 async function setupNodeEvents(on, config) {
-  // This is required for the preprocessor to be able to generate JSON reports after each run, and more,
   await addCucumberPreprocessorPlugin(on, config);
+
+  // on('task', tasks);
+  on('task', {
+    excelToJsonConverter(filePath) {
+      const result = excelToJson({
+        source: fs.readFileSync(filePath) // fs.readFileSync returns a Buffer
+      });
+      return result;
+    }
+  });
 
   on("file:preprocessor", preprocessor(config));
 
-  // Make sure to return the config object as it might have been modified by the plugin.
   return config;
 }
+
+
 module.exports = defineConfig({
   env: {
     //Run spec file and Set env var through terminal
@@ -31,11 +41,9 @@ module.exports = defineConfig({
     defaultCommandTimeout: 4000,
     video: true,
     reporter: "mochawesome",
-    // modifyObstructiveCode: true,
-    // experimentalSourceRewriting:false,
     chromeWebSecurity: true,
     setupNodeEvents,
-    // specPattern:'D:/Cypress/UdemyCypress/cypress/integration/examples/*.js'
-    specPattern:'D:\Cypress\UdemyCypress\cypress\e2e\BDD\*.feature'
-  },
+    specPattern: "cypress/integration/e2e/BDD/*.js"
+  }
+
 });
